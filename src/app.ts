@@ -1,25 +1,28 @@
 import express from 'express';
-import AdminJS from 'adminjs';
 import { buildAuthenticatedRouter } from '@adminjs/express';
+import AdminJS from 'adminjs';
+import mongoose from 'mongoose';
+import { Database, Resource } from '@adminjs/mongoose';
 
 import provider from './admin/auth-provider.js';
-import options from './admin/options.js';
-import initializeDb from './db/index.js';
+import componentLoader from './admin/component-loader.js';
+import { AppResources } from './models/index.js';
 
 const port = process.env.PORT || 3000;
 
+AdminJS.registerAdapter({ Database, Resource });
+
 const start = async () => {
+  await mongoose.connect(process.env.DATABASE_URL as string);
+
   const app = express();
 
-  await initializeDb();
-
-  const admin = new AdminJS(options);
-
-  if (process.env.NODE_ENV === 'production') {
-    await admin.initialize();
-  } else {
-    admin.watch();
-  }
+  const admin = new AdminJS({
+    componentLoader,
+    rootPath: '/admin',
+    resources: AppResources,
+    databases: [],
+  });
 
   const router = buildAuthenticatedRouter(
     admin,
