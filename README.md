@@ -16,6 +16,6 @@ STEP 2: `cd white-adminjs`
 
 STEP 3: `npm install`
 
-STEP 4: `npm start`
+STEP 4: check `.env.example` file, create your `.env` and run `npm start`
 
 STEP 5: inside `src/constants.ts` you find login credentials.
