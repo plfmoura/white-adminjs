@@ -19,3 +19,5 @@ STEP 3: `npm install`
 STEP 4: check `.env.example` file, create your `.env` and run `npm start`
 
 STEP 5: inside `src/constants.ts` you find login credentials.
+
+for more information you can check <a href="https://docs.adminjs.co/installation/getting-started">AdminJS Documentation</a>
