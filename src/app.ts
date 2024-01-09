@@ -1,16 +1,21 @@
 import express from 'express';
 import { buildAuthenticatedRouter } from '@adminjs/express';
-import AdminJS from 'adminjs';
+import AdminJS, { ComponentLoader } from 'adminjs';
 import mongoose from 'mongoose';
 import { Database, Resource } from '@adminjs/mongoose';
-
 import provider from './admin/auth-provider.js';
-import componentLoader from './admin/component-loader.js';
 import { AppResources } from './models/index.js';
 
 const port = process.env.PORT || 3000;
 
 AdminJS.registerAdapter({ Database, Resource });
+
+const componentLoader = new ComponentLoader()
+
+const Components = {
+  Dashboard: componentLoader.add('Dashboard', './dashboard'),
+  // other custom components
+}
 
 const start = async () => {
   await mongoose.connect(process.env.DATABASE_URL as string);
@@ -18,10 +23,13 @@ const start = async () => {
   const app = express();
 
   const admin = new AdminJS({
-    componentLoader,
     rootPath: '/admin',
     resources: AppResources,
     databases: [],
+    componentLoader,
+    dashboard: {
+      component: Components.Dashboard,
+    },
   });
 
   const router = buildAuthenticatedRouter(

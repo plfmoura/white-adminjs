@@ -1,5 +1,4 @@
-import { ComponentLoader } from 'adminjs';
+import { ComponentLoader } from 'adminjs'
 
-const componentLoader = new ComponentLoader();
+export const componentLoader = new ComponentLoader()
 
-export default componentLoader;
