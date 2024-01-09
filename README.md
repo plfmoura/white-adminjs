@@ -1,4 +1,4 @@
-Project status: We encounter a hard difficult to add new components and make some changes in base adminJS application. Maybe the doc examples not be clear to create our custom CRM APP.
+**Project status**: We encounter a hard difficult to add new components and make some changes in base adminJS application. Maybe the doc examples not be clear to create our custom CRM APP.
 
 ### timeline events:
 
