@@ -6,4 +6,4 @@ We encounter a hard difficult to add new components and make some changes in bas
 - [x] remove adminjs unusable features
 - [x] connect with mongoose ORM
 - [x] do some resources to check db integrity
-- [ ] add new custom components (we break here) :warning
+- [ ] add new custom components (we break here)⚠️
